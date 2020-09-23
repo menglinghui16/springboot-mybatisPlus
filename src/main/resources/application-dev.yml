@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: springboot-mybatisPlus
+  #配置数据源
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/testmysql?characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull&useUnicode=true&useSSL=false
+    username: root
+    password: 123
+#  redis:
+#    host:
+#    port: 6379
+#    password:
+#    timeout:
+#  cache:
+#    cache-names: folderinfo

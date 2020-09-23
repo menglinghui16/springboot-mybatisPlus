@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tankehui.dao.CityDao">
+	<resultMap id="BaseResultMap" type="com.tankehui.entity.City">
+		<result column="id" property="id" />
+		<result column="province_id" property="provinceId" />
+		<result column="city_name" property="cityName" />
+		<result column="description" property="description" />
+	</resultMap>
+
+	<parameterMap id="City" type="com.tankehui.entity.City"/>
+
+	<sql id="Base_Column_List">
+		id, province_id, city_name, description
+	</sql>
+
+	<select id="findByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from city
+		where city_name = #{cityName}
+	</select>
+
+<insert id="insertSelective" parameterType="com.tankehui.entity.City">
+    insert into city
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="provinceId != null">
+        province_id,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
